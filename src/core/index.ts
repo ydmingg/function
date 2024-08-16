@@ -1,14 +1,17 @@
 import UI from "../ui";
 import Loader from "../loader";
+import Emitter from "../utils";
 import Word from "../word";
 
 let instance: Core | null = null;
-export default class Core { 
+export default class Core extends Emitter{ 
     ui!: UI;
     loader!: Loader;
     word!: Word;
     
     constructor() { 
+        super();
+
         if (instance) { return instance }
         instance = this;
 
@@ -18,11 +21,10 @@ export default class Core {
         this.word = new Word()
         
         
-
-        
-
-        
     }
+
+    
+    
     
 
 
