@@ -6,7 +6,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "paths": {
-      "three/examples/jsm/loaders/GLTFLoader": ["./node_modules/@types/three/examples/jsm/loaders/GLTFLoader"],
+      "three/*": ["./node_modules/@types/three/*"]
     },
 
     /* Bundler mode */

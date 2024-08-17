@@ -4,20 +4,20 @@ export default class Ui {
     private core: Core;
     private doms: {
         /* 初始加载进度相关 */
-        app: HTMLElement;
         loading: HTMLElement;
-        // loading_complete: HTMLElement;
+        loading_complete: HTMLElement;
     }
 
     constructor() { 
         this.core = new Core()
 
         
+        
+        
 
         this.doms = {
-            app: document.querySelector("#app")!,
             loading: document.querySelector(".loading")!,
-			// loading_complete: document.querySelector(".loading-complete")!,
+			loading_complete: document.querySelector(".loading-complete")!,
             
         }
         
@@ -25,7 +25,15 @@ export default class Ui {
     }
 
     updateLoadingProgress(loading_text: string) {
-		const progress = this.doms.app
+		const progress = this.doms.loading;
 		progress && (progress.textContent = loading_text);
+	}
+
+    removeLoading() {
+		this.doms.loading.remove();
+	}
+
+    showLoadingConfirm() {
+		this.doms.loading_complete.classList.remove("display-none");
 	}
 }
