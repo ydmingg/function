@@ -1,4 +1,4 @@
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import Core from "../core";
 import {DefaultLoadingManager} from "three";
 
