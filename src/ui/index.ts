@@ -2,6 +2,7 @@ import Core from "../core";
 
 export default class Ui { 
     private core: Core;
+    
     private doms: {
         /* 初始加载进度相关 */
         loading: HTMLElement;
