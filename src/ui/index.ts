@@ -10,8 +10,6 @@ export default class Ui {
 
     constructor() { 
         this.core = new Core()
-
-        
         
         
 

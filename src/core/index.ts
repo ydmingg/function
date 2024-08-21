@@ -29,16 +29,18 @@ export default class Core extends Emitter{
 		this.clock = new THREE.Clock();
 		this.orbit_controls = new OrbitControls(this.camera, this.renderer.domElement);
 
-        // 实例化ui
-        this.ui = new UI();
-        this.loader = new Loader()
-        this.word = new Word()
-
         this._initScene();
 		this._initCamera();
 		this._initRenderer();
 		this._initResponsiveResize();
-        
+		
+		// 实例化ui
+        this.ui = new UI();
+		
+        this.loader = new Loader()
+        this.word = new Word()
+
+		
     }
 
     private _initScene() {

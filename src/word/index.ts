@@ -1,6 +1,9 @@
 import Core from "../core";
 import Audio from "../audio";
 import Environment from "../environment";
+import { 
+	Events,
+} from "../files";
 
 export default class Word { 
     private core: Core;
@@ -10,8 +13,8 @@ export default class Word {
     constructor() { 
         this.core = new Core();
 
-		this.core.$on("on-load", this._handleLoadProgress.bind(this));
-		this.core.$on("on-load-model-finish", this._onLoadModelFinish.bind(this));
+		this.core.$on(Events.ON_LOAD, this._handleLoadProgress.bind(this));
+		this.core.$on(Events.ON_LOAD_MODEL_FINISH, this._onLoadModelFinish.bind(this));
         
 		this.environment = new Environment();
 		this.audio = new Audio()
