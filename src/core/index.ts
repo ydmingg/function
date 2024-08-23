@@ -3,6 +3,7 @@ import UI from "../ui";
 import Loader from "../loader";
 import Emitter from "../utils";
 import Word from "../word";
+import ControlManage from "../controlManage";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 let instance: Core | null = null;
@@ -13,7 +14,8 @@ export default class Core extends Emitter{
 	clock!: THREE.Clock;
 	orbit_controls!: OrbitControls;
 
-    ui!: UI;
+	ui!: UI;
+	control_manage!: ControlManage;
     loader!: Loader;
     word!: Word;
     
@@ -36,12 +38,21 @@ export default class Core extends Emitter{
 		
 		// 实例化ui
         this.ui = new UI();
-		
+		this.control_manage = new ControlManage();
         this.loader = new Loader()
         this.word = new Word()
 
 		
-    }
+	}
+	
+	render() {
+		this.renderer.setAnimationLoop(() => {
+			this.renderer.render(this.scene, this.camera);
+			const delta_time = Math.min(0.05, this.clock.getDelta());
+			this.word.update(delta_time);
+			this.orbit_controls.update();
+		});
+	}
 
     private _initScene() {
 		this.scene.background = new THREE.Color(0x000000);
@@ -64,6 +75,7 @@ export default class Core extends Emitter{
 		this.renderer.domElement.style.position = "absolute";
 		this.renderer.domElement.style.zIndex = "1";
 		this.renderer.domElement.style.top = "0px";
+		
 		document.querySelector("#app")?.appendChild(this.renderer.domElement);
 	}
     

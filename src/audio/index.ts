@@ -37,4 +37,8 @@ export default class Audio {
 
 		return Promise.resolve();
 	}
+
+	playAudio() {
+		this.positional_audio?.play();
+	}
 }
