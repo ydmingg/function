@@ -32,7 +32,6 @@ export default class ControlManage {
 	constructor() {
 		this.core = new Core();
 		this._bindEvent();
-		console.log(this);
 	}
 
 	private _bindEvent() {
@@ -68,19 +67,19 @@ export default class ControlManage {
 			// 	console.log(this.move_degree);
 			// })
 			// 鼠标长按时设置 this.is_click = false;
-			this.mode = "mobile";
+			// this.mode = "mobile";
 
-			this._createJoystick();
+			// this._createJoystick();
 
-			window.addEventListener("dblclick", () => {
-				document.documentElement.requestFullscreen();
-			});
+			// window.addEventListener("dblclick", () => {
+			// 	document.documentElement.requestFullscreen();
+			// });
 
-			document.addEventListener('click', () => { 
-				this.move_degree = 12
-				console.log(this.move_degree);
+			// document.addEventListener('click', () => { 
+			// 	this.move_degree = 12
+			// 	// console.log(this.move_degree);
 				
-			})
+			// })
 			// document.addEventListener("click", this._onClick.bind(this));
 		}
 	}
@@ -100,7 +99,7 @@ export default class ControlManage {
 		if (this.isAllowKey(event.code) && this.is_enabled) {
 			this.key_status[event.code] = true;
 			this.core.$emit(Events.ON_KEY_DOWN, event.code);
-			console.log(1);
+			// console.log(1);
 			
 		}
 	}

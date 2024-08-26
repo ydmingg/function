@@ -24,7 +24,8 @@ export default class Environment {
     constructor() { 
         this.core = new Core();
         this.loader = this.core.loader
-        this._loadScenes();
+		this._loadScenes();
+		
         
     }
 
@@ -37,6 +38,7 @@ export default class Environment {
 			this._createSpecularReflection();
 			this.is_load_finished = true;
 			this.core.$emit(Events.ON_LOAD_MODEL_FINISH);
+			console.log(this.collider);
 		} catch (e) {
 			console.log(e);
 		}
@@ -60,7 +62,10 @@ export default class Environment {
 		for (const key in this.texture_boards) {
 			const board = this.gallery_boards[`gallery${key}_board`];
 			const board_material = board.material;
+
 			(board_material as THREE.MeshBasicMaterial).map = this.texture_boards[key];
+			// console.log(board);
+			
 			board.userData = {
 				name: board.name,
 				// title: BOARDS_INFO[key].title,
@@ -75,9 +80,7 @@ export default class Environment {
 
     private async _loadBoardsTexture(): Promise<void> { 
 		for (let i = 0; i < BOARD_TEXTURES.length; i++) {
-			// console.log(BOARD_TEXTURES[i]);
-			
-			// this.texture_boards[i + 1] = await this.loader.texture_loader.loadAsync(BOARD_TEXTURES[i]);
+			this.texture_boards[i + 1] = await this.loader.texture_loader.loadAsync(BOARD_TEXTURES[i]);
 		}
 
 		return Promise.resolve();

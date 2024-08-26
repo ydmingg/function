@@ -4,15 +4,15 @@ export const STATIC_SCENE_URL = new URL("../../static/models/scene_desk_obj.glb"
 // 贴图资源
 export const BOARD_TEXTURES = [
 	new URL("../../static/boards/1.png", import.meta.url).href,
-    new URL("../../assets/boards/2.png", import.meta.url).href,
+    new URL("../../static/boards/2.png", import.meta.url).href,
     new URL("../../static/boards/3.jpg", import.meta.url).href,
-    new URL("../../assets/boards/4.jpg", import.meta.url).href,
-    new URL("../../assets/boards/5.png", import.meta.url).href,
-    new URL("../../assets/boards/6.png", import.meta.url).href,
-    new URL("../../assets/boards/7.png", import.meta.url).href,
-    new URL("../../assets/boards/8.jpg", import.meta.url).href,
-    new URL("../../assets/boards/9.jpg", import.meta.url).href,
-    new URL("../../assets/boards/10.png", import.meta.url).href,
+    new URL("../../static/boards/4.jpg", import.meta.url).href,
+    new URL("../../static/boards/5.png", import.meta.url).href,
+    new URL("../../static/boards/6.png", import.meta.url).href,
+    new URL("../../static/boards/7.png", import.meta.url).href,
+    new URL("../../static/boards/8.jpg", import.meta.url).href,
+    new URL("../../static/boards/9.jpg", import.meta.url).href,
+    new URL("../../static/boards/10.png", import.meta.url).href,
 ];
 
 export const IFRAME_SRC = new URL("/universe/index.html", import.meta.url).href;
