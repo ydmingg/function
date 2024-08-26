@@ -38,6 +38,7 @@ export default class Environment {
 			this._createSpecularReflection();
 			this.is_load_finished = true;
 			this.core.$emit(Events.ON_LOAD_MODEL_FINISH);
+			
 			console.log(this.collider);
 		} catch (e) {
 			console.log(e);

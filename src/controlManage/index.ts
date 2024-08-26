@@ -47,7 +47,7 @@ export default class ControlManage {
 			});
 
 			document.addEventListener('click', () => { 
-				this.move_degree = 12
+				// this.move_degree = 12
 				console.log(this.move_degree);
 				
 			})

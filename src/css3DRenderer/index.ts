@@ -45,21 +45,25 @@ export default class Css3DRenderer {
 		material.blending = NoBlending;
 		const geometry = new PlaneGeometry(1.5, 1.3);
 		const mesh = new Mesh(geometry, material);
-		mesh.position.set(-15.55, 5.5, 36.33);
+		// mesh.position.set(-15.55, 5.5, 36.33);
+		// mesh.position.set(30,30,30)
 		mesh.rotation.set(0, Math.PI / 2, 0);
 		this.core.scene.add(mesh);
 
-		const iframe = document.createElement("iframe");
-		iframe.src = IFRAME_SRC;
-		iframe.style.width = "1200px";
-		iframe.style.height = "900px";
-		iframe.style.boxSizing = "border-box";
-		iframe.style.opacity = "1";
+		console.log(mesh);
+		
 
-		const object = new CSS3DObject(iframe);
-		object.position.copy(mesh.position);
-		object.rotation.copy(mesh.rotation);
-		object.scale.set(0.002, 0.002, 0.002);
-		this.css_scene.add(object);
+		// const iframe = document.createElement("iframe");
+		// iframe.src = IFRAME_SRC;
+		// iframe.style.width = "1200px";
+		// iframe.style.height = "900px";
+		// iframe.style.boxSizing = "border-box";
+		// iframe.style.opacity = "1";
+
+		// const object = new CSS3DObject(iframe);
+		// object.position.copy(mesh.position);
+		// object.rotation.copy(mesh.rotation);
+		// object.scale.set(0.002, 0.002, 0.002);
+		// this.css_scene.add(object);
 	}
 }
