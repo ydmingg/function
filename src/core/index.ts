@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import type { CoreOptions } from "../types";
 import UI from "../ui";
 import Loader from "../loader";
 import Emitter from "../utils";
@@ -7,7 +8,8 @@ import ControlManage from "../controlManage";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 let instance: Core | null = null;
-export default class Core extends Emitter{ 
+export class Core extends Emitter{ 
+	private container: HTMLDivElement;
     scene!: THREE.Scene;
 	renderer!: THREE.WebGLRenderer;
 	camera!: THREE.PerspectiveCamera;
@@ -19,11 +21,19 @@ export default class Core extends Emitter{
     loader!: Loader;
     word!: Word;
     
-    constructor() { 
-        super();
+    constructor(container: HTMLDivElement, opts: CoreOptions) { 
+		super();
+
+		const { width, height } = opts;
+		this.container = container
+		
 
         if (instance) { return instance }
         instance = this;
+
+		
+
+
 
         this.scene = new THREE.Scene();
 		this.renderer = new THREE.WebGLRenderer({antialias: true});
@@ -32,8 +42,16 @@ export default class Core extends Emitter{
 		this.orbit_controls = new OrbitControls(this.camera, this.renderer.domElement);
 
         this._initScene();
-		this._initCamera();
-		this._initRenderer();
+		this._initCamera({
+			width,
+			height,
+		});
+		// renderer 渲染
+		this._initRenderer({
+			width,
+			height,
+		});
+		// 初始化resize
 		this._initResponsiveResize();
 		
 		// 实例化ui
@@ -45,7 +63,10 @@ export default class Core extends Emitter{
 		
 	}
 	
-	render() {
+	render(url: string) {
+		console.log(url);
+		
+		
 		this.renderer.setAnimationLoop(() => {
 			this.renderer.render(this.scene, this.camera);
 			const delta_time = Math.min(0.05, this.clock.getDelta());
@@ -58,32 +79,32 @@ export default class Core extends Emitter{
 		this.scene.background = new THREE.Color(0x000000);
 	}
     
-    private _initCamera() {
+    private _initCamera(size: any) {
 		this.camera.fov = 55;
-		this.camera.aspect = window.innerWidth / window.innerHeight;
+		this.camera.aspect = size.width / size.height;
 		this.camera.near = 0.1;
 		this.camera.far = 1000;
 		this.camera.position.set(0, 0, 3);
 		this.camera.updateProjectionMatrix();
     }
     
-    private _initRenderer() {
+    private _initRenderer(size:any) {
 		this.renderer.shadowMap.enabled = true;
 		this.renderer.outputColorSpace = THREE.SRGBColorSpace;
 		this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-		this.renderer.setSize(window.innerWidth, window.innerHeight);
-		this.renderer.domElement.style.position = "absolute";
-		this.renderer.domElement.style.zIndex = "1";
-		this.renderer.domElement.style.top = "0px";
+		this.renderer.setSize(size.width, size.height);
+		// this.renderer.domElement.style.position = "absolute";
+		// this.renderer.domElement.style.zIndex = "1";
+		// this.renderer.domElement.style.top = "0px";
 		
-		document.querySelector("#app")?.appendChild(this.renderer.domElement);
+		this.container.appendChild(this.renderer.domElement);
 	}
     
     private _initResponsiveResize() {
 		window.addEventListener("resize", () => {
-			this.camera.aspect = window.innerWidth / window.innerHeight;
+			this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
 			this.camera.updateProjectionMatrix();
-			this.renderer.setSize(window.innerWidth, window.innerHeight);
+			this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
 			this.renderer.setPixelRatio(window.devicePixelRatio);
 		});
 	}

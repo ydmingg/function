@@ -1,6 +1,6 @@
 import {Box3, Line3, Matrix4, Mesh, MeshBasicMaterial, Vector3} from "three";
 import {RoundedBoxGeometry} from "three/examples/jsm/geometries/RoundedBoxGeometry";
-import Core from "../core";
+import { Core } from "../core";
 import {Events} from "../files";
 
 type CharacterParams = {

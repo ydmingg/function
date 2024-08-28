@@ -1,4 +1,4 @@
-import Core from "../core";
+import { Core } from "../core";
 import {Object3D, Raycaster, Vector2} from "three";
 import {Events} from "../files";
 

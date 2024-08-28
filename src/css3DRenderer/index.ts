@@ -1,6 +1,6 @@
 import {DoubleSide, Mesh, MeshStandardMaterial, NoBlending, PlaneGeometry, Scene} from "three";
 import {CSS3DObject, CSS3DRenderer} from "three/examples/jsm/renderers/CSS3DRenderer";
-import Core from "../core";
+import { Core } from "../core";
 import {IFRAME_SRC} from "../files";
 
 export default class Css3DRenderer {
@@ -50,7 +50,6 @@ export default class Css3DRenderer {
 		mesh.rotation.set(0, Math.PI / 2, 0);
 		this.core.scene.add(mesh);
 
-		console.log(mesh);
 		
 
 		// const iframe = document.createElement("iframe");

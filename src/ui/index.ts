@@ -1,4 +1,4 @@
-import Core from "../core";
+import { Core } from "../core";
 import { Events } from "../files"
 
 export default class Ui { 
@@ -7,7 +7,7 @@ export default class Ui {
     private doms: {
         /* 初始加载进度相关 */
         loading: HTMLElement;
-        loading_complete: HTMLElement;
+        // loading_complete: HTMLElement;
     }
 
     constructor() { 
@@ -15,11 +15,11 @@ export default class Ui {
 
         this.doms = {
             loading: document.querySelector(".loading")!,
-			loading_complete: document.querySelector(".loading-complete")!,
+			// loading_complete: document.querySelector(".loading-complete")!,
             
         }
         
-        document.body.addEventListener("click", this.handleClick.bind(this));
+        // document.body.addEventListener("click", this.handleClick.bind(this));
         
         
     }
@@ -87,8 +87,8 @@ export default class Ui {
 	}
     
     onClickEnterApp() {
-		this.doms.loading_complete.remove();
-        this.core.$emit(Events.ON_ENTER_APP);
+		// this.doms.loading_complete.remove();
+        // this.core.$emit(Events.ON_ENTER_APP);
 	}
 
     updateLoadingProgress(loading_text: string) {
@@ -100,7 +100,7 @@ export default class Ui {
 		this.doms.loading.remove();
 	}
 
-    showLoadingConfirm() {
-		this.doms.loading_complete.classList.remove("display-none");
-	}
+    // showLoadingConfirm() {
+	// 	this.doms.loading_complete.classList.remove("display-none");
+	// }
 }

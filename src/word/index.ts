@@ -1,4 +1,4 @@
-import Core from "../core";
+import { Core } from "../core";
 import Audio from "../audio";
 import Environment from "../environment";
 import RayCasterControls from "../rayCasterControls";
@@ -36,6 +36,7 @@ export default class Word {
 	}
 	 
 	update(delta: number) {
+		// this.environment.
 		if (this.environment.collider && this.environment.is_load_finished) {
 			this.css_3d_renderer.update();
 			this.character.update(delta, this.environment.collider);
@@ -56,7 +57,7 @@ export default class Word {
 
 		// 音频加载完毕后移除加载进度UI，显示进入确认UI
 		this.core.ui.removeLoading();
-		this.core.ui.showLoadingConfirm();
+		// this.core.ui.showLoadingConfirm();
 		
 
 

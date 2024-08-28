@@ -1,4 +1,4 @@
-import Core from "../core";
+import { Core } from "../core";
 import Loader from "../loader";
 import {isLight, isMesh} from "../utils/typeAssert";
 import * as THREE from "three";
@@ -22,9 +22,9 @@ export default class Environment {
     is_load_finished = false;
     
     constructor() { 
-        this.core = new Core();
+		this.core = new Core();
         this.loader = this.core.loader
-		this._loadScenes();
+		this._loadScenes(this.core.render);
 		
         
     }
@@ -39,7 +39,7 @@ export default class Environment {
 			this.is_load_finished = true;
 			this.core.$emit(Events.ON_LOAD_MODEL_FINISH);
 			
-			console.log(this.collider);
+			// console.log(this.collider);
 		} catch (e) {
 			console.log(e);
 		}
@@ -89,13 +89,13 @@ export default class Environment {
 
     private _loadStaticScene(): Promise<void> {
         return new Promise(resolve => {
-			this.loader.gltf_loader.load(STATIC_SCENE_URL, (gltf) => {
+			this.loader.gltf_loader.load(url, (gltf) => {
 				this.core.scene.add(gltf.scene);
 				gltf.scene.traverse(item => {
 					if (item.name === "computer") {
 						item.userData = {
 							name: item.name,
-							// title: "噢，是远方 🏕",
+							// title: "",
 						};
 						this.raycast_objects.push(item);
 					}

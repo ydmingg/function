@@ -1,7 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
 
-import Core from "../core";
+import { Core } from "../core";
 import { 
     Events
 } from "../files"

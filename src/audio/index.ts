@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {PositionalAudioHelper} from "three/examples/jsm/helpers/PositionalAudioHelper";
-import Core from "../core";
+import { Core } from "../core";
 import {AUDIO_URL} from "../files";
 
 export default class Audio {
